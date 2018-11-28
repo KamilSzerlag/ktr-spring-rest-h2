@@ -26,7 +26,7 @@
 </form:form>
 
 Calculate how much money you can get money!
-<form:form action="/kantor/result" method="get">
+<form:form action="/kantor/exchange/buy" method="get">
     <tr>
         <td>FROM:
             <input list="basecurrency1" name="base">
@@ -48,8 +48,13 @@ Calculate how much money you can get money!
         <td>
             <input type="number" name="amount" step="any" min="5" max="100000">
         </td>
+    </tr>
+    <tr>
         <td>
-            <input type="submit" value="Calculate!">
+            <input type="submit" value="Buy!">
+        </td>
+        <td>
+        <input type="submit" value="Sell!" formaction="/kantor/exchange/sell">
         </td>
     </tr>
 </form:form>

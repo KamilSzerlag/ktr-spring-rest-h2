@@ -29,17 +29,20 @@ public class RestExchangeController {
         }
     }
 
-    @GetMapping("/exchange")
-    private ExchangeResult makeExchange(@RequestParam(name = "base") String base, @RequestParam(name = "out") String out, @RequestParam(name = "amount") float amount) {
-        float result = ExchangeService.exchangeCurrent(amount, base, out);
+    @GetMapping("/exchange/sell")
+    private ExchangeResult sellExchange(@RequestParam(name = "base") String base, @RequestParam(name = "out") String out, @RequestParam(name = "amount") float amount) {
+        float result = ExchangeService.sellingCurrent(amount, base, out);
         return new ExchangeResult(base, out, result);
     }
 
+    @GetMapping("/exchange/buy")
+    private ExchangeResult buyExchange(@RequestParam(name = "base") String base, @RequestParam(name = "out") String out, @RequestParam(name = "amount") float amount) {
+        float result = ExchangeService.buyingCurrent(amount, base, out);
+        return new ExchangeResult(base, out, result);
+    }
 
     @GetMapping("/help")
     private ResponseEntity website() throws IOException {
         return ResponseEntity.status(HttpStatus.MOVED_PERMANENTLY).header(HttpHeaders.LOCATION, "/WEB-INF/resources/pages/help.html").build();
     }
-
-
 }

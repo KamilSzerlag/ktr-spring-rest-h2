@@ -20,12 +20,14 @@
 <table>
     <tr>
         <th>Currency</th>
-        <th>Exchange</th>
+        <th>Buying</th>
+        <th>Selling</th>
     </tr>
     <c:forEach var="tempKey" items="${currencyKeysList}" varStatus="Count">
-    <td>${tempKey}</td>
-    <td>${currencyValuesList[Count.index]}</td>
-    </tr>
+        <td>${tempKey}</td>
+        <td>${currencySellingValuesList[Count.index]}</td>
+        <td>${currencyBuyingValuesList[Count.index]}</td>
+        </tr>
     </c:forEach>
 </table>
 </body>

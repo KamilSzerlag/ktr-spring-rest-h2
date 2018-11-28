@@ -32,31 +32,47 @@ public class ExchangeController {
     @GetMapping("/list")
     private String getLatestCurrency(@RequestParam(name = "base") String base, Model model) {
 
-        Currency currency = new Currency();
+        Currency currencyBuying = new Currency();
+        Currency currencySelling = new Currency();
         try {
-            currency = CurrencyService.getCustomBaseCurrency(base);
-
+            currencyBuying = CurrencyService.getBuyingCurrencyPrice(base);
+            currencySelling = CurrencyService.getSellingCurrencyPrice(base);
         } catch (IOException e) {
             e.getStackTrace();
         }
-        List<String> currencyKeysList = new LinkedList<>(currency.getRates().keySet());
-        List<Float> currencyValuesList = new LinkedList<>(currency.getRates().values());
+        List<String> currencyKeysList = new LinkedList<>(currencyBuying.getRates().keySet());
+        List<Float> currencyBuyingValuesList = new LinkedList<>(currencyBuying.getRates().values());
+        List<Float> currencySellingValuesList = new LinkedList<>(currencySelling.getRates().values());
         model.addAttribute("baseCurrency", base);
         model.addAttribute("currencyKeysList", currencyKeysList);
-        model.addAttribute("currencyValuesList", currencyValuesList);
+        model.addAttribute("currencyBuyingValuesList", currencyBuyingValuesList);
+        model.addAttribute("currencySellingValuesList", currencySellingValuesList);
 
-        return "kantor";
+        return "list";
     }
 
-    @GetMapping("/result")
-    private String makeExchange(@RequestParam(name = "base") String base, @RequestParam("out") String out, @RequestParam("amount") float amount, Model model) {
-        float result = ExchangeService.exchangeCurrent(amount, base, out);
-        model.addAttribute("base",base);
-        model.addAttribute("out",out);
-        model.addAttribute("amount",amount);
-        model.addAttribute("result",result);
+    @GetMapping("/exchange/buy")
+    private String buyExchange(@RequestParam(name = "base") String base, @RequestParam("out") String out, @RequestParam("amount") float amount, Model model) {
+        float result = ExchangeService.buyingCurrent(amount, base, out);
+        String message = "You will pay";
+        model.addAttribute("base", base);
+        model.addAttribute("out", out);
+        model.addAttribute("amount", amount);
+        model.addAttribute("result", result);
+        model.addAttribute("message", message);
         return "result-page";
     }
 
+    @GetMapping("/exchange/sell")
+    private String sellExchange(@RequestParam(name = "base") String base, @RequestParam("out") String out, @RequestParam("amount") float amount, Model model) {
+        float result = ExchangeService.sellingCurrent(amount, base, out);
+        String message = "You will get";
+        model.addAttribute("base", base);
+        model.addAttribute("out", out);
+        model.addAttribute("amount", amount);
+        model.addAttribute("result", result);
+        model.addAttribute("message", message);
+        return "result-page";
+    }
 
 }

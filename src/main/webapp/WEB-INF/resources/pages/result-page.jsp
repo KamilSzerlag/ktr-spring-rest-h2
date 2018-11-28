@@ -11,7 +11,7 @@
 <head>
     <title>EXCHANGE RESULT</title>
     <table>
-        <tr><td>FROM: ${base} </td><td>${amount}</td><td> TO: ${out}</td><td> ${result}</td></tr>
+        <tr><td>FROM: ${base} </td><td>${amount}</td><td> TO: ${out}</td><td>${message}: ${result}</td></tr>
     </table>
 </head>
 <body>
