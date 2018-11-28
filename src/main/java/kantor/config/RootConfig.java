@@ -7,18 +7,18 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;
 import java.util.Properties;
 
-@EnableWebMvc
+
 @EnableTransactionManagement
 @Configuration
 @ComponentScan(basePackages = "kantor")
@@ -33,11 +33,11 @@ public class RootConfig {
         this.env = env;
     }
 
+
     @Bean(initMethod = "start", destroyMethod = "stop")
     public Server server() throws SQLException {
         return Server.createTcpServer();
     }
-
 
     @Bean
     public DataSource myDataSource() {

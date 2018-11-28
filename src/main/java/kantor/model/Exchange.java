@@ -1,5 +1,8 @@
 package kantor.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Exchange {
     private String baseCurrency;
     private String outCurrency;

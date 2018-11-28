@@ -5,6 +5,12 @@ public class ExchangeResult {
     private String outCurrency;
     private float result;
 
+    public ExchangeResult(String baseCurrency, String outCurrency, float result) {
+        this.baseCurrency = baseCurrency;
+        this.outCurrency = outCurrency;
+        this.result = result;
+    }
+
     public String getBaseCurrency() {
         return baseCurrency;
     }
