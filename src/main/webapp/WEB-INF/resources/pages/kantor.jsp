@@ -15,16 +15,18 @@
     <title>KANTOR</title>
 </head>
 <body>
+
+<h1>BASE:<b>${baseCurrency}</b></h1>
 <table>
-<tr>Currency</tr>
-
-<c:forEach var="tempKeys" items="${currencyKeysList}">
-    <td>${tempKeys}</td>
-</c:forEach>
-<c:forEach var="tempValues" items="${currencyValuesList}">
-    <td>${tempValues}</td>
-</c:forEach>
-
+    <tr>
+        <th>Currency</th>
+        <th>Exchange</th>
+    </tr>
+    <c:forEach var="tempKey" items="${currencyKeysList}" varStatus="Count">
+    <td>${tempKey}</td>
+    <td>${currencyValuesList[Count.index]}</td>
+    </tr>
+    </c:forEach>
 </table>
 </body>
 </html>
