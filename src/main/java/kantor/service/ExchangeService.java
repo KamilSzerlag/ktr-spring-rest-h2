@@ -8,7 +8,7 @@ public class ExchangeService {
         float result = 0;
         if (exchangedValue > 0) {
             try {
-                return result = exchangedValue * CurrencyService.getBuyingCurrencyPrice(baseCurrency).getSingleRate(outCurrency);
+                return result = exchangedValue * CurrencyBuyingService.getBuyingCurrencyPrice(baseCurrency).getSingleRate(outCurrency);
             } catch (IOException e) {
                 e.getStackTrace();
             }
@@ -19,7 +19,7 @@ public class ExchangeService {
         float result = 0;
         if (exchangedValue > 0) {
             try {
-                return result = exchangedValue * CurrencyService.getSellingCurrencyPrice(baseCurrency).getSingleRate(outCurrency);
+                return result = exchangedValue * CurrencySellingService.getSellingCurrencyPrice(baseCurrency).getSingleRate(outCurrency);
             } catch (IOException e) {
                 e.getStackTrace();
             }

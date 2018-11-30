@@ -1,6 +1,8 @@
 package kantor.controller;
 
 import kantor.model.Currency;
+import kantor.service.CurrencyBuyingService;
+import kantor.service.CurrencySellingService;
 import kantor.service.CurrencyService;
 import kantor.service.ExchangeService;
 import org.springframework.stereotype.Controller;
@@ -35,8 +37,8 @@ public class ExchangeController {
         Currency currencyBuying = new Currency();
         Currency currencySelling = new Currency();
         try {
-            currencyBuying = CurrencyService.getBuyingCurrencyPrice(base);
-            currencySelling = CurrencyService.getSellingCurrencyPrice(base);
+            currencyBuying = CurrencyBuyingService.getBuyingCurrencyPrice(base);
+            currencySelling = CurrencySellingService.getSellingCurrencyPrice(base);
         } catch (IOException e) {
             e.getStackTrace();
         }

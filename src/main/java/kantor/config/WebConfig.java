@@ -20,8 +20,6 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addResourceHandler("/WEB-INF/resources/pages/**").addResourceLocations("/help");
     }
 
-
-
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/").setViewName("/index.html");
